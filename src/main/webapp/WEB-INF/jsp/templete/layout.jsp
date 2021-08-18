@@ -18,37 +18,12 @@
 </head>
 <body>
 
-	<div id="wrap" class="bg-dark">
+	<div id="wrap" >
 
 		<jsp:include page="../include/gmb.jsp" />
 
 		<section class="content d-flex justify-content-center">
-			<%-- <jsp:include page="../${viewName}.jsp" /> --%>
-			<div class="loginput">
-			<table class="table">
-				<tr>
-					<td>아이디 (4자이상)</td>
-					<td><input type="text" class="from-control"><button class="btn btn-success">중복확인</button> </td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="text" class="from-control"></td>
-				</tr>
-				<tr>
-					<td>비밀번호 확인</td>
-					<td><input type="text" class="from-control"></td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td><input type="text" class="from-control"></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><input type="text" class="from-control"></td>
-				</tr>
-			</table>
-			<button class="btn btn-info mt-3">회원가입</button>
-			</div>
+			<jsp:include page="../${viewName}.jsp" /> 
 
 		</section>
 
