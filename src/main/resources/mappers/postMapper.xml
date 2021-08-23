@@ -53,21 +53,36 @@
 	userId,
 	subject,
 	content,
-	imagePath,
-	createdAt,
-	updatedAt
+	imagePath
 	)
 	values(
 	#{userId},
 	#{subject},
 	#{content},
-	#{imagePath},
-	now(),
-	now()
+	#{imagePath}
 	)
 	
 	
 	
 	</insert>
+	
+	<update id="updatePost" parameterType="map">
+	update
+	post
+	set
+	subject = #{subject},
+	content = #{content},
+	updatedAt = now()
+	<!-- imagePath가 null이 아닐때만 수정한다. -->
+	<if test="imagePath !=null">
+	,imagePath = #{imagePath}
+	</if>
+	where
+	id = #{postId}
+	and userId = #{userId}
+	
+	
+	
+	</update>
 
 </mapper>

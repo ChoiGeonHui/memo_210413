@@ -33,12 +33,42 @@ public class PostRestController {
 		Integer userId =(Integer) session.getAttribute("userId");
 		String userLoginId =(String) session.getAttribute("userLoginId");
 		
-		int insert = postBO.create(userId, userLoginId,subject, content, image);
+		int row = postBO.create(userId, userLoginId,subject, content, image);
 		Map<String, String> result = new HashMap<String, String>();
 		
+		if(row >0) {
+			result.put("result", "success");	
+		}else {
+			result.put("result", "fail");		
+		}
 		
-		result.put("result", "succcess");
 		return result;
 	}
+	
+	
+	@PostMapping("/update")
+	public Map<String, String> updatePost(
+			@RequestParam("postId") int postId,
+			@RequestParam("subject") String subject,
+			@RequestParam("content") String content,
+			@RequestParam(value =  "image", required = false) MultipartFile image,
+			HttpServletRequest request) {
+		
+		HttpSession session= request.getSession();
+		Integer userId =(Integer) session.getAttribute("userId");
+		String userLoginId =(String) session.getAttribute("userLoginId");
+		
+		Map<String, String> result = new HashMap<String, String>();
+		int row = postBO.updatePost(postId, userId, userLoginId, subject, content, image);
+		
+		if(row>0) {
+			result.put("result", "success");
+		}else {
+			result.put("result", "fail");
+		}
+		
+		return result;
+	}
+	
 
 }

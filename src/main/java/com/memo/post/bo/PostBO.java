@@ -1,5 +1,6 @@
 package com.memo.post.bo;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -51,6 +52,41 @@ public class PostBO {
 			
 		}	
 		log.info("#########이미지 주소 : "+ imageUrl);
-		return postDAO.insertPost(userLoginId, subject, content, imageUrl);
+		return postDAO.insertPost(userId, subject, content, imageUrl);
 	}
+	
+	
+	public int updatePost(int postId,int userId,String userLoginId,
+			String subject, String content, MultipartFile file) {
+		String imageUrl = null;
+		
+		if(file !=null) {		
+			try {
+				//컴퓨터에 파일 업로드 후 웹으로 접근할 수 있는 imageURL을 얻어낸다.
+				Post post = postDAO.selectPostListByPostIdAndUserId(postId, userId);
+				imageUrl= fileManagerSurvice.saveFile(userLoginId,file);		
+				
+				String oldimage =post.getImagePath();
+				
+				if(oldimage !=null && imageUrl !=null) {	
+				fileManagerSurvice.deleteFile(oldimage);
+				}
+				
+			}catch (Exception e) {
+				log.error("[파일 업로드 ]"+e.getMessage());
+			}
+			
+		}
+		
+		
+		
+		
+		return postDAO.updatePost(postId, userId, subject, content, imageUrl);
+	}
+	
+	
+	
+	
+	
+	
 }

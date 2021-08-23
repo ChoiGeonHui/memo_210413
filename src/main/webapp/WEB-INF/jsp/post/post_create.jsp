@@ -86,7 +86,7 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-			method:'post',
+			method:'POST',
 			url:'/post/create',
 			data:formData,
 			
@@ -96,7 +96,8 @@ $(document).ready(function(){
 			success:function(data){
 				if(data.result=='success'){
 					alert("저장되었습니다.");
-					location.href="post/post_list_view"
+					location.href="/post/post_list_view"
+					
 				}
 			},
 			error:function(e){

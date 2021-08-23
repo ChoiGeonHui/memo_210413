@@ -18,7 +18,14 @@ public interface PostDAO {
 			@Param("userId") int userId);
 	
 	public int insertPost(
-			@Param("userLoginId") String userLoginId,
+			@Param("userId") int userId,
+			@Param("subject") String subject,
+			@Param("content") String content, 
+			@Param("imagePath") String imagePath);
+	
+	public int updatePost(
+			@Param("postId") int postId,
+			@Param("userId") int userId,
 			@Param("subject") String subject,
 			@Param("content") String content, 
 			@Param("imagePath") String imagePath);

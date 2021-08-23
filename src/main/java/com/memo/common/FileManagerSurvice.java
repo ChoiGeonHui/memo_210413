@@ -44,4 +44,35 @@ public class FileManagerSurvice {
 		//이미지 Url 만들어 리턴
 		return "/images/"+directoryName+ file.getOriginalFilename();
 	}
+	
+	
+	//파일 삭제
+	
+	public void deleteFile(String imagePath) throws IOException {
+		
+		Path path = Paths.get(FILE_UPLOAD_PATH+imagePath.replace("/images/", ""));
+		//파일 삭제
+		if(Files.exists(path)) {
+			logger.info("%%%%%%%%%%%%%%%%%%: "+path);
+			Files.delete(path);
+			
+		}
+		
+		
+		//디렉토리 삭제
+		path = path.getParent();
+		if(Files.exists(path)) {
+			logger.info("################: "+path);
+			Files.delete(path);
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 }
