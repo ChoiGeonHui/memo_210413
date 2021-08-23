@@ -17,8 +17,8 @@
 			<%--input-group-prepend--%>
 				<div class="input-group-prepend">
 					<span class="input-group-text">PW</span>
-				</div>
 				<input type="text" class="form-control" id="password" name="password">
+				</div>
 			</div>
 			
 			<input type="submit" class="mb-3 btn btn-primary btn-block" value="로그인">

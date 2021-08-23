@@ -90,7 +90,7 @@ public class UserController {
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("userName");
-		session.removeAttribute("userloginId");
+		session.removeAttribute("userLoginId");
 		session.removeAttribute("userId");
 		
 		return "redirect:/user/sign_in_view";

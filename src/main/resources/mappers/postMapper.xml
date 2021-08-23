@@ -23,5 +23,51 @@
 
 
 	</select>
+	
+	<select id="selectPostListByPostIdAndUserId" parameterType="map"
+	resultType="com.memo.post.model.Post">
+	
+		select
+		id,
+		userId,
+		subject,
+		content,
+		imagePath,
+		createdAt,
+		updatedAt
+		from
+		post
+		where
+		id = #{postId}
+		and
+		userId = #{userId}
+
+	
+	
+	</select>
+	
+	<insert id="insertPost" parameterType="map">
+	insert into
+	post
+	(
+	userId,
+	subject,
+	content,
+	imagePath,
+	createdAt,
+	updatedAt
+	)
+	values(
+	#{userId},
+	#{subject},
+	#{content},
+	#{imagePath},
+	now(),
+	now()
+	)
+	
+	
+	
+	</insert>
 
 </mapper>

@@ -25,7 +25,7 @@ public class PermissonInterceptor implements HandlerInterceptor{
 		
 		//세션 확인 =>있으면 로그인된 상태
 		HttpSession session = request.getSession();
-		String userloginId = (String) session.getAttribute("userloginId");
+		String userloginId = (String) session.getAttribute("userLoginId");
 		
 		//url -url path 확인
 		String uri =request.getRequestURI();
