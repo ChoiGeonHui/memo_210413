@@ -22,7 +22,10 @@ public class PostController {
 	private PostBO postBO;
 	
 	@RequestMapping("/post_list_view")
-	public String postListView(Model model,
+	public String postListView(
+			@RequestParam(value = "prevId",required = false) Integer prevIdParm,
+			@RequestParam(value = "nextId",required = false) Integer nextIdParm,
+			Model model,
 			HttpServletRequest request) {
 		
 		HttpSession session =  request.getSession();
@@ -32,7 +35,26 @@ public class PostController {
 			return"redirect:/user/sign_in_view";
 		}
 		
-		List<Post> postlist= postBO.getPostListByUserId(userId);
+		//게시글번호 10 9 8 |  7 6 5 | 4 3 2 | 1
+		// 1) 다음 가장 작은수 (오른쪽 값) => nextId  쿼리 : nextIdParm보다 작은 3개(limit)를 가져오기
+		// 2) 이전 가장 큰 수(왼 쪽 값) => prevId  쿼리 : prevIdParm보다  큰 3개(limit)를 가져오기
+		//순서가 뒤집히므로 코드정렬
+		
+		List<Post> postlist= postBO.getPostListByUserId(userId, prevIdParm, nextIdParm);
+			
+		int prevId = postlist.get(0).getId();
+		int nextId = postlist.get(postlist.size()-1).getId();
+		model.addAttribute("prev", prevId);//리스트중 가장 앞쪽
+		model.addAttribute("next", nextId);//리스트 중 가장 뒷쪽 
+		
+		if(postBO.isLastPage(userId, nextId)) {
+			nextId = 0;
+		}
+		if(postBO.isFirstPage(userId, prevId)) {
+			prevId = 0;
+		}
+		
+		
 		model.addAttribute("postlist", postlist);
 		model.addAttribute("viewName", "post/list_view");
 		return"/templete/layout";

@@ -11,11 +11,21 @@ import com.memo.post.model.Post;
 public interface PostDAO {
 	
 	
-	public List<Post> selectPostListByUserId(int userId);
+	public List<Post> selectPostListByUserId(
+			@Param("userId") int userId,
+			@Param("direction") String direction,
+			@Param("standardId") Integer standardId,
+			@Param("limit") int limit);
 
 	public Post selectPostListByPostIdAndUserId(
 			@Param("postId") int postId,
 			@Param("userId") int userId);
+	
+	
+	public int selectPostListByUserIdAndSort(
+			@Param("userId") int userId,
+			@Param("sort") String sort
+			);
 	
 	public int insertPost(
 			@Param("userId") int userId,
