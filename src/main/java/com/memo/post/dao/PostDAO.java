@@ -24,8 +24,7 @@ public interface PostDAO {
 	
 	public int selectPostByUserIdAndSort(
 			@Param("userId") int userId,
-			@Param("sort") String sort
-			);
+			@Param("sort") String sort);
 	
 	public int insertPost(
 			@Param("userId") int userId,

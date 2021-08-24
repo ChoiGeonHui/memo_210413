@@ -60,8 +60,8 @@ public class PostController {
 		
 		model.addAttribute("postlist", postlist);
 		model.addAttribute("viewName", "post/list_view");
-		model.addAttribute("prev", prevId);//리스트중 가장 앞쪽
-		model.addAttribute("next", nextId);//리스트 중 가장 뒷쪽 		
+		model.addAttribute("prevId", prevId);//리스트중 가장 앞쪽
+		model.addAttribute("nextId", nextId);//리스트 중 가장 뒷쪽 		
 		return"/templete/layout";
 	}
 	

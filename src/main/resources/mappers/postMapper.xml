@@ -41,7 +41,7 @@
 		and `id` < #{standardId}
 		]]>
 		order by
-		`id` asc	
+		`id` desc	
 		</if>
 		
 		limit ${limit}
@@ -82,6 +82,8 @@
 	order by
 	`id`
 	${sort}
+	
+	limit 1
 	</select>
 	
 	
