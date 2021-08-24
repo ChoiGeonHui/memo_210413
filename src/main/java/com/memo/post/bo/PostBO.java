@@ -41,7 +41,7 @@ public class PostBO {
 			direction = "prev";
 			standardId = prevId;
 			
-			List<Post> postlist= postDAO.selectPostListByUserId(userId, direction, standardId, userId);
+			List<Post> postlist= postDAO.selectPostListByUserId(userId, direction, standardId, POST_MAX_SIZE);
 			Collections.reverse(postlist);
 			return postlist;
 		}else if(nextId != null) {

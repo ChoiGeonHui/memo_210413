@@ -19,14 +19,14 @@
 		post
 		where
 		userId = #{userId}
-		
+			
 		<if test="direction ==null">
 		order by
 		`id` desc	
 		</if>
 		
 		<!-- 이전을 클릭했을때 -->
-		<if test="direction == prev">
+		<if test="direction == 'prev'">
 		<![CDATA[
 		and `id` > #{standardId}
 		]]>
@@ -36,14 +36,13 @@
 		
 		
 		<!-- 다음을 클릭했을때 -->
-		<if test="direction == next">
+		<if test="direction == 'next'">
 		<![CDATA[
 		and `id` < #{standardId}
 		]]>
 		order by
 		`id` asc	
 		</if>
-		
 		
 		limit ${limit}
 
