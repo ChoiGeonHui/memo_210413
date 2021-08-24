@@ -56,19 +56,19 @@ public class PostBO {
 	
 	//가장 오른쪽 페이지인가?
 	public boolean isLastPage(int userId,int nextId) {
-		return nextId == postDAO.selectPostListByUserIdAndSort(userId, "ASC");
+		return nextId == postDAO.selectPostByUserIdAndSort(userId, "ASC");
 	}
 	
 	//가장 오른쪽 페이지인가?
 	public boolean isFirstPage(int userId,int prevId) {
-		return prevId == postDAO.selectPostListByUserIdAndSort(userId, "DESC");
+		return prevId == postDAO.selectPostByUserIdAndSort(userId, "DESC");
 	}
 	
 	
 	
 	public Post getPostByPostIdAndUserId(int postId,int userId) {
 		
-		return postDAO.selectPostListByPostIdAndUserId(postId,userId);
+		return postDAO.selectPostByPostIdAndUserId(postId,userId);
 		
 	}
 	
@@ -100,7 +100,7 @@ public class PostBO {
 		if(file !=null) {		
 			try {
 				//컴퓨터에 파일 업로드 후 웹으로 접근할 수 있는 imageURL을 얻어낸다.
-				Post post = postDAO.selectPostListByPostIdAndUserId(postId, userId);
+				Post post = postDAO.selectPostByPostIdAndUserId(postId, userId);
 				imageUrl= fileManagerSurvice.saveFile(userLoginId,file);		
 				
 				String oldimage =post.getImagePath();

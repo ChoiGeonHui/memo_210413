@@ -48,7 +48,7 @@
 
 	</select>
 	
-	<select id="selectPostListByPostIdAndUserId" parameterType="map"
+	<select id="selectPostByPostIdAndUserId" parameterType="map"
 	resultType="com.memo.post.model.Post">
 	
 		select
@@ -71,7 +71,7 @@
 	</select>
 	
 	
-	<select id="selectPostListByUserIdAndSort" parameterType="map"
+	<select id="selectPostByUserIdAndSort" parameterType="map"
 	resultType="int">
 	select
 	`id`

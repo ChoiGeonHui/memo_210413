@@ -17,12 +17,12 @@ public interface PostDAO {
 			@Param("standardId") Integer standardId,
 			@Param("limit") int limit);
 
-	public Post selectPostListByPostIdAndUserId(
+	public Post selectPostByPostIdAndUserId(
 			@Param("postId") int postId,
 			@Param("userId") int userId);
 	
 	
-	public int selectPostListByUserIdAndSort(
+	public int selectPostByUserIdAndSort(
 			@Param("userId") int userId,
 			@Param("sort") String sort
 			);
